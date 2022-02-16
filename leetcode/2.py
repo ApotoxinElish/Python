@@ -8,3 +8,6 @@ class ListNode:
 class Solution:
     def addTwoNumbers(self, l1: ListNode, l2: ListNode) -> ListNode:
         pass
+
+
+list_temp = [["" for i in range(rows)] for j in range(numRows)]
