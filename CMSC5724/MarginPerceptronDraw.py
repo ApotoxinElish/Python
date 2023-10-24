@@ -1,4 +1,5 @@
 import matplotlib.pyplot as plt
+import numpy as np
 
 
 def readData(file_name):
@@ -23,12 +24,12 @@ def dotProduct(vector1, vector2):
 
 
 def findViolationPoint(gamma_guess, w, dataset):
-    w_norm = dotProduct(w, w)
+    w_norm = dotProduct(w, w) ** (1 / 2)
     if not w_norm:
         return dataset[0]
 
     for point in dataset:
-        distance = point[-1] * dotProduct(w, point[:-1]) / w_norm ** (1 / 2)
+        distance = point[-1] * dotProduct(w, point[:-1]) / w_norm
 
         if distance < gamma_guess / 2:
             return point
@@ -67,22 +68,31 @@ def marginPerceptron(gamma_guess, d, n, R, dataset):
 def incrementalAlgorithm(d, n, R, dataset):
     gamma_guess = R
     w = None
-    iteration_num = 0
 
-    while iteration_num < 10:
+    while True:
         w, iter_times = marginPerceptron(gamma_guess, d, n, R, dataset)
         # print(w)
         if w:
             break
 
         gamma_guess /= 2
-        iteration_num += 1
 
     return w, gamma_guess, iter_times
 
 
-def drawPlane():
-    fig, ax = plt.subplot()
+def drawPlane(w, dataset):
+    fig, ax = plt.subplots()
+
+    x = [each[0] for each in dataset]
+    y = [each[1] for each in dataset]
+    label = ["green" if each[-1] + 1 else "blue" for each in dataset]
+    ax.scatter(x, y, s=2, c=label)
+
+    x = np.linspace(-16, 16, 100)
+    y = -w[0] * x / w[1]
+    ax.plot(x, y, linewidth=2.0, color="red")
+
+    plt.show()
 
 
 def main():

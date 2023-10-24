@@ -11,13 +11,11 @@ def readData(file_name):
 
     return d, n, r, dataset
 
-
 def dotProduct(vector1, vector2):
     dot_product = 0
     for i in range(len(vector1)):
         dot_product += vector1[i] * vector2[i]
     return dot_product
-
 
 def findViolationPoint(gamma_guess, w, dataset):
     w_norm = dotProduct(w, w) ** (1 / 2)
@@ -76,10 +74,6 @@ def incrementalAlgorithm(d, n, R, dataset):
     return w, gamma_guess, iter_times
 
 
-def printOutput():
-    print("===============================================================")
-
-
 def main(file_name):
     d, n, r, dataset = readData(file_name)
 
@@ -88,34 +82,35 @@ def main(file_name):
     print("----------------------- Result Start -----------------------")
     print(f"The tested file is {file_name}")
     print(f"The Margin Perceptron ends at {iter_times} iterations")
-    print(f"The current gamma_guess is {gamma_guess}")
-    print(f"The current w is {w}")
-    print("------------------------ Result End ------------------------\n")
+    print(f"The current gamma_guess is {gamma_guess}")  
+    print(f"The current w is {w}")  
+    print("------------------------ Result End ------------------------")
 
 
 if __name__ == "__main__":
     test_files = ["2d-r16-n10000.txt", "4d-r24-n10000.txt", "8d-r12-n10000.txt"]
-    print("Welcome to use our Margin Perceptron program!\n")
+    print("Welcome to use our Margin Perceptron program!")
     while True:
-        print("Choose one of prepared datasets, or enter another file.")
-        print("[1] : test on 2d-r16-n10000.txt")
-        print("[2] : test on 4d-r24-n10000.txt")
-        print("[3] : test on 8d-r12-n10000.txt")
-        print("[4] : test on other file")
-        print("[5] : exit the program\n")
-        try:
-            op = int(input("Select the operation you desire: "))
-            print()
+        print("1: test on 2d-r16-n10000.txt")
+        print("2: test on 4d-r24-n10000.txt")
+        print("3: test on 8d-r12-n10000.txt")
+        print("4: test on other file")
+        print("5: exit the program")
+        try: 
+            op = int(input("Select the operation you desire:"))
             if op in range(1, 4):
-                main(test_files[op - 1])
+                main(test_files[op-1])
             elif op == 4:
-                file_name = input("Input the file path of your test file: ")
+                file_name = input("Input the file path of your test file:")
                 main(file_name)
             elif op == 5:
-                print("Exit.")
-                exit()
+                print("Exit")
+                break
             else:
                 print("Got undefined input, please retry!")
 
         except Exception as e:
             print("Got illegal input, please retry!")
+            print(f"Detail: {e}")
+
+    
