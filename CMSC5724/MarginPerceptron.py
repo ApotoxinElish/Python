@@ -76,10 +76,6 @@ def incrementalAlgorithm(d, n, R, dataset):
     return w, gamma_guess, iter_times
 
 
-def printOutput():
-    print("===============================================================")
-
-
 def main(file_name):
     d, n, r, dataset = readData(file_name)
 
@@ -95,9 +91,9 @@ def main(file_name):
 
 if __name__ == "__main__":
     test_files = ["2d-r16-n10000.txt", "4d-r24-n10000.txt", "8d-r12-n10000.txt"]
-    print("Welcome to use our Margin Perceptron program!\n")
+    print("\nWelcome to use our Margin Perceptron program!\n")
     while True:
-        print("Choose one of prepared datasets, or enter another file.")
+        print("Choose one of prepared datasets, or enter another file.\n")
         print("[1] : test on 2d-r16-n10000.txt")
         print("[2] : test on 4d-r24-n10000.txt")
         print("[3] : test on 8d-r12-n10000.txt")
