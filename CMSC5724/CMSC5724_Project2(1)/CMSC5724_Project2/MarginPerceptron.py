@@ -75,11 +75,9 @@ def incrementalAlgorithm(d, n, R, dataset):
 
     return w, gamma_guess, iter_times
 
-
 def caculateMargin(w, dataset, R):
     margin = R
     w_norm = dotProduct(w, w) ** (1 / 2)
-    print("-----------------------", 1 / w_norm)
     for point in dataset:
         distance = point[-1] * dotProduct(w, point[:-1]) / w_norm
         if distance < margin:
@@ -93,7 +91,7 @@ def main(file_name):
     w, gamma_guess, iter_times = incrementalAlgorithm(d, n, r, dataset)
 
     margin = caculateMargin(w, dataset, r)
-
+    
     print("----------------------- Result Start -----------------------")
     print(f"The tested file is {file_name}")
     print(f"The Margin Perceptron ends at {iter_times} iterations")

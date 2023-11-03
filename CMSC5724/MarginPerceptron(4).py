@@ -79,7 +79,6 @@ def incrementalAlgorithm(d, n, R, dataset):
 def caculateMargin(w, dataset, R):
     margin = R
     w_norm = dotProduct(w, w) ** (1 / 2)
-    print("-----------------------", 1 / w_norm)
     for point in dataset:
         distance = point[-1] * dotProduct(w, point[:-1]) / w_norm
         if distance < margin:
